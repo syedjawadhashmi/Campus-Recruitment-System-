@@ -1,0 +1,8 @@
+
+export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR';
+export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+
