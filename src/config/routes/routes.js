@@ -12,7 +12,8 @@ import signup from '../../containers/signup/signup'
 import signin from '../../containers/signin/signin'
 import userhome from '../../containers/userhome/userhome'
 import user from '../../containers/user/user'
-
+import company from '../../containers/company/company'
+import admin from '../../containers/admin/admin'
 
 const requireAuth = (nextState, replace) => {
     // if (!auth.isAdmin()) {
@@ -40,6 +41,8 @@ export default function Root({history, store}) {
          <Route path='signin' component={signin} />
          <Route path='' component={userhome} onEnter={requireAuth}>
               <Route path="user/:userid" component={user}/>
+              <Route path="admin/:userid" component={admin}/>
+              <Route path="company/:userid" component={company}/>
          </Route>
     </Route>
   </Router>

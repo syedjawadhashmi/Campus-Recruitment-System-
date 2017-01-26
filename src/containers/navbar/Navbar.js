@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-
-
+import firebase from 'firebase';
+import { authActions } from '../../action/auth';
 import {browserHistory} from 'react-router';
+// redux/firebase
+import { connect } from 'react-redux'
 // ...
 
 // Components
@@ -13,22 +15,31 @@ import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
 import Avatar from 'material-ui/Avatar'
 const buttonStyle = { color: 'white' }
+const stockPhotoUrl = 'https://s3.amazonaws.com/kyper-cdn/img/User.png'
+const originSettings = { horizontal: 'right', vertical: 'bottom' }
+const avatarSize = 50
 
-export default class Navbar extends Component {
+  class Navbar extends Component {
 
+ static propTypes = {
+      auth: PropTypes.object.isRequired,
+      signOut: PropTypes.func.isRequired
+    }
 
     state = {
         open: false
     }
 
-
-    handleToggle = () => this.setState({open: !this.state.open});
-    handleClose = () => this.setState({open: false});
-
-
+handleLogin = (loginData) => {
+    this.props.signOut()
+     browserHistory.push('/')
+  }
 
   render () {
+const { auth } = this.props;
 
+
+console.log('sjjjjjjjj' + auth)
       const mainMenu = (
       <div className='Navbar-Main-Menu' >
         <FlatButton
@@ -44,7 +55,13 @@ export default class Navbar extends Component {
       </div>
     )
 
-
+const rightMenu = auth.auth && auth.auth.user ? (
+       <FlatButton
+          label='LogOut'
+          style={buttonStyle}
+          onClick={this.handleLogin} 
+        />
+    ) : mainMenu
 
    /* return (
       <AppBar
@@ -61,10 +78,21 @@ export default class Navbar extends Component {
       return(
           <div>
 
-          <AppBar title="Campus Recuritment System" className='Navbar' iconElementRight={mainMenu} />
+          <AppBar title="Campus Recuritment System" className='Navbar' iconElementRight={rightMenu} />
         
           </div>
       )
 
   }
 }
+//=====================================
+//  CONNECT
+//-------------------------------------
+
+
+const mapStateToProps = (state) => {
+  //console.log(state)
+	return { auth: state };
+};
+
+export default connect(mapStateToProps, authActions)(Navbar);

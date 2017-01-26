@@ -8,7 +8,7 @@ import FontIcon from 'material-ui/FontIcon';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 
-class user extends Component {
+class company extends Component {
 static propTypes = {
       auth: PropTypes.object.isRequired,
   }
@@ -21,7 +21,7 @@ static propTypes = {
         return (
 
             <div>
-                <h4>This is user page { this.props.auth.auth.user.email } </h4>
+                <h4>This is Company Page { this.props.auth.auth.user.email } </h4>
             </div>
         )
     }
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
 	return { auth: state };
 };
 
-export default connect(mapStateToProps)(user);
+export default connect(mapStateToProps)(company);

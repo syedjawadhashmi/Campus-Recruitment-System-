@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import firebase from 'firebase';
 import { authActions } from '../../action/auth';
 // Components
 import LoginForm from '../../components/signinform/signinform'
@@ -25,12 +25,25 @@ class signin extends Component {
   componentWillReceiveProps (nextProps) {
   //console.log(nextProps)
     const { auth } = this.props;
-    if (auth.isLoggedin && !nextProps.auth.auth.isLoggedin) {
+
+    const ref = firebase.database().ref().child("users/"+nextProps.auth.auth.user.uid);
+        ref.once('value', snapshot => {
+          const currentUser = snapshot.val()
+           console.log(currentUser)
+             if (auth.isLoggedin && !nextProps.auth.auth.isLoggedin) {
      browserHistory.push('/signin')
     }
-    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin) {
+    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="User" ) {
      browserHistory.push('/user/'+nextProps.auth.auth.user.uid);
     }
+    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="Comapany" ) {
+     browserHistory.push('/company/'+nextProps.auth.auth.user.uid);
+    }
+    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="Admin" ) {
+     browserHistory.push('/admin/'+nextProps.auth.auth.user.uid);
+    }
+        })
+  
   }
 
   handleLogin = (loginData) => {

@@ -37,7 +37,7 @@ import RaisedButton from 'material-ui/RaisedButton'
     })
 
   handleSignup = ({ email, password, firstName ,lastName,role}) => {
-    this.props.registerWithCustom({ email, password, firstName ,lastName,role })
+    this.props.registerWithCustom({ email, password, firstName ,lastName })
     browserHistory.push('/signin')
   }
 
