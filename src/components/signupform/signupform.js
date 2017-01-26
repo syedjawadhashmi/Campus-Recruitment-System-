@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 
 const fieldStyle = { width: '80%' }
-const buttonStyle = { width: '96%', marginBottom: '.5rem' }
+const buttonStyle = { width: '100%' }
 
 export default class SignupForm extends Component {
 
@@ -40,7 +40,7 @@ export default class SignupForm extends Component {
 
   render () {
     return (
-      <form className='SignupForm' onSubmit={this.handleSignup}>
+      <form style={{padding: '16px',margin:'0px'}} className='LoginForm'  onSubmit={this.handleSignup}>
         <TextField
           hintText='username'
           floatingLabelText='Username'
@@ -60,10 +60,10 @@ export default class SignupForm extends Component {
           style={fieldStyle}
           type='password'
         />
-        <div className='SignupForm-Submit'>
+        <div className='LoginForm-Submit'>
           <RaisedButton
             label='Sign Up'
-            secondary
+            primary
             type='submit'
             style={buttonStyle}
           />

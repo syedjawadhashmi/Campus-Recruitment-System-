@@ -45,19 +45,10 @@ import RaisedButton from 'material-ui/RaisedButton'
   render () {
 
     return (
-      <div className='Signup'>
-        <Paper className='Signup-Panel'>
+      <div className='Login' style={{marginLeft: '340px',marginTop: '67px',width: '50%'}}>
+        <Paper className='Login-Panel'>
           <SignupForm onSignup={this.handleSignup} />
         </Paper>
-
-        <div className='Signup-Login'>
-          <span className='Signup-Login-Label'>
-            Already have an account?
-          </span>
-          <Link className='Signup-Login-Link' to='/login'>
-            Login
-          </Link>
-        </div>
       </div>
     )
   }

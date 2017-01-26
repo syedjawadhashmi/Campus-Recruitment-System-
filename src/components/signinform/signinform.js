@@ -36,7 +36,7 @@ export default class signinForm extends Component {
     }
 
     return (
-      <form className='LoginForm' onSubmit={handleSubmit}>
+      <form style={{padding: '16px',margin:'0px'}} className='LoginForm' onSubmit={handleSubmit}>
         <TextField
           floatingLabelText='Email'
           name="email"
@@ -55,7 +55,7 @@ export default class signinForm extends Component {
         <div className='LoginForm-Submit'>
           <RaisedButton
             label='Login'
-            secondary
+            primary
             type='submit'
             style={buttonStyle}
           />

@@ -61,16 +61,8 @@ export default class Navbar extends Component {
       return(
           <div>
 
-          <AppBar title="Sj IQ" className='Navbar' iconElementRight={mainMenu}  onLeftIconButtonTouchTap={this.handleToggle} />
-          <Drawer
-              width={300}
-              open={this.state.open}
-              openSecondary={true}>
-              <AppBar title="NavBar" />
-              <MenuItem onTouchTap={this.handleClose}>Menu Item 1</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
-              <MenuItem onTouchTap={this.handleClose}>Menu Item 3</MenuItem>
-          </Drawer>
+          <AppBar title="Campus Recuritment System" className='Navbar' iconElementRight={mainMenu} />
+        
           </div>
       )
 

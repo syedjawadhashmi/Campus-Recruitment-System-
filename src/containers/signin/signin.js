@@ -42,7 +42,7 @@ class signin extends Component {
   render () {
       
     return (
-      <div className='Login'>
+      <div className='Login' style={{marginLeft: '340px',marginTop: '67px',width: '50%'}}>
         <Paper className='Login-Panel'>
           <LoginForm onLogin={this.handleLogin} />
         </Paper>
