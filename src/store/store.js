@@ -11,6 +11,7 @@ import reducers from '../reducers';
 export default (initialState = {}) => {
     let middleware = applyMiddleware(thunk);
 
+
     if (process.env.NODE_ENV !== 'production.') {
         // configure redux-devtools-extension
         // @see https://github.com/zalmoxisus/redux-devtools-extension

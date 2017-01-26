@@ -6,7 +6,9 @@ import {
   SIGN_OUT_SUCCESS,
   SIGN_OUT_ERROR,
   REGISTER_ERROR,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  ADDUSER_SUCCESS,
+  ADDUSER_ERROR
 } from './action-types';
 
 
@@ -53,8 +55,10 @@ export function signInSuccess(result) {
 //     .catch((error) => console.log('Oops', error))
 // }
 
+
 export function saveUser (user,credentials) {
-  return firebaseDb.ref().child(`users/${user.uid}`)
+  return dispatch => {
+    firebaseDb.ref().child(`users/${user.uid}`)
     .set({
       firstName:credentials.firstName,
       lastName:credentials.lastName,
@@ -63,6 +67,9 @@ export function saveUser (user,credentials) {
       role:credentials.role,
       lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
     })
+      .then((result) => dispatch(addUserSuccess(user)))
+      .catch(error => dispatch(addUserError(error)));
+  };
     
 }
 // //   signup process
@@ -75,21 +82,49 @@ export function saveUser (user,credentials) {
 // }
 
 
+// function customRegister(credentials) {
+
+//    console.log(credentials)
+// return (dispatch, getState) => {
+// 	dispatch(addUserSuccess(credentials))
+// 		return firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+// 			.then(user => 
+// 				firebaseDb.ref().child(`users/${user.uid}`)
+//         .set({
+//       firstName:credentials.firstName,
+//       lastName:credentials.lastName,
+//       email: user.email,
+//       uid: user.uid,
+//       role:credentials.role,
+//       lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+//       }))
+// 			.then(response =>dispatch(registerSuccess(response)))
+// 			.catch(error => {
+//         dispatch(registerError(error))
+// 			})
+// 	}
+// }
+
 function customRegister(credentials) {
 
-  console.log(credentials)
-  return dispatch => {
-     return dispatch(firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
-     .then((result) => {
-      return dispatch(saveUser(result,credentials)
-       .then(result2 => dispatch(registerSuccess(result2)))
-      )
-    })
-     )
-    
-     
-  };
+   console.log(credentials)
+return (dispatch, getState) => {
+
+		return firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+			.then((user) => {
+      
+				return saveUser(user, credentials)(dispatch)
+			})
+			.then(response =>dispatch(registerSuccess(response)))
+			.catch(error => {
+        dispatch(registerError(error))
+			})
+	}
 }
+
+
+
+
 
 export function registerWithCustom(credentials) {
   return customRegister(credentials);
@@ -108,7 +143,19 @@ export function registerSuccess(result) {
   };
 }
 
-
+export function addUserError(error) {
+ return {
+    type: ADDUSER_ERROR,
+    payload: error
+  };
+}
+export function addUserSuccess(result) {
+   return {
+    type: ADDUSER_SUCCESS,
+    payload: result
+  };
+ 
+}
 
 
 

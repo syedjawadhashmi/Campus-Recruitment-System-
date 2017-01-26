@@ -21,7 +21,7 @@ static propTypes = {
         return (
 
             <div>
-                <h4>This is sj user { this.props.auth.auth.user.email } </h4>
+                <h4>This is user { this.props.auth.auth.user.email } </h4>
             </div>
         )
     }

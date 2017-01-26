@@ -4,7 +4,8 @@ import {
   SIGN_OUT_SUCCESS,
   SIGN_OUT_ERROR,
   REGISTER_ERROR,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  ADDUSER_SUCCESS
  } from '../../action/auth';
 
 const InitalState = {
@@ -12,6 +13,7 @@ const InitalState = {
   isLoggedin: false,
   isRegistered: false,
   user: null,
+  userData:null
 };
 
 export const authReducer = function (state = InitalState, action) {
@@ -25,10 +27,10 @@ export const authReducer = function (state = InitalState, action) {
       return Object.assign({}, state, { isLoading: false, isLoggedin: false, user: null });
     case SIGN_OUT_SUCCESS:
       return Object.assign({}, state, { isLoading: false, isLoggedin: false, user: null });
-    case REGISTER_SUCCESS:
-      return Object.assign({}, state, { isLoading: false, isRegistered: true ,user: action});
     case REGISTER_ERROR:
       return Object.assign({}, state, { isLoading: false });
+          case ADDUSER_SUCCESS:
+      return Object.assign({}, state, {isLoading: false, isRegistered: true ,user: action});
     default:
       return state;
   }
