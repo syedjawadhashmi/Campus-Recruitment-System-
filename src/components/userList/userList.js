@@ -35,7 +35,11 @@ export default class UsersList extends Component {
     const { users } = this.props;
 
     return (
+
+
+        
       <ul>
+      
         { this.showUsersList(users).map(user => <li>{ user.firstName }</li>) }
       </ul>
     );
