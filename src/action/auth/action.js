@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { firebaseAuth } from '../../config/firebase';
+import { firebaseAuth,firebaseDb } from '../../config/firebase';
 import {
   SIGN_IN_ERROR,
   SIGN_IN_SUCCESS,
@@ -45,29 +45,56 @@ export function signInSuccess(result) {
 }
 
 
-function set(key, value) {
-    return new Promise((resolve, reject) => {
-      firebaseDb.ref(`abc/111`)
-        .set({name:'sjawad'}, error => error ? reject(error) : resolve(
-          console.log("jlsjfsd")
-        ));
-    });
-  }
 
 
-//   signup process
+// export function customRegister(credentials) {
+//   return firebaseAuth().createUserWithEmailAndPassword(credentials.email, credentials.password)
+//     .then(saveUser)
+//     .catch((error) => console.log('Oops', error))
+// }
+
+export function saveUser (user,credentials) {
+  return firebaseDb.ref().child(`users/${user.uid}`)
+    .set({
+      firstName:credentials.firstName,
+      lastName:credentials.lastName,
+      email: user.email,
+      uid: user.uid,
+      role:credentials.role,
+      lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+    })
+    
+}
+// //   signup process
+
+// function customRegister(credentials) {
+//   return dispatch => {
+//     firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+//       .then(result => dispatch(saveUser(result)))
+//   };
+// }
+
 
 function customRegister(credentials) {
+
+  console.log(credentials)
   return dispatch => {
-    firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+     return dispatch(firebaseAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+     .then((result) => {
+      return dispatch(saveUser(result,credentials)
+       .then(result2 => dispatch(registerSuccess(result2)))
+      )
+    })
+     )
     
-      .then(result => dispatch(registerSuccess(result)))
-      .catch(error => dispatch(registerError(error)));
+     
   };
 }
+
 export function registerWithCustom(credentials) {
   return customRegister(credentials);
 }
+
 export function registerError(error) {
   return {
     type: REGISTER_ERROR,
@@ -115,4 +142,3 @@ export function signOutError() {
 // export function signInWithTwitter() {
 //   return authenticate(new firebase.auth.TwitterAuthProvider());
 // }
-

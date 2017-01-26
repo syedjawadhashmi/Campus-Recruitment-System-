@@ -31,13 +31,13 @@ import RaisedButton from 'material-ui/RaisedButton'
   reset = () =>
     this.setState({
       errors: {},
-      username: null,
+      firstName: null,
       email: null,
-      name: null
+      lastName: null
     })
 
-  handleSignup = ({ email, password, username }) => {
-    this.props.registerWithCustom({ email, password })
+  handleSignup = ({ email, password, firstName ,lastName,role}) => {
+    this.props.registerWithCustom({ email, password, firstName ,lastName,role })
     browserHistory.push('/signin')
   }
 

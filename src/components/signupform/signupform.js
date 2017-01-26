@@ -3,6 +3,8 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
 
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 const fieldStyle = { width: '80%' }
 const buttonStyle = { width: '100%' }
 
@@ -19,36 +21,55 @@ export default class SignupForm extends Component {
   reset = () =>
     this.setState({
       errors: {},
-      username: null,
+      firstName: null,
       email: null,
-      name: null
+      lastName: null,
+      value:null,
+      role:null
     })
 
   handleSignup = e => {
     e.preventDefault()
-    const { username, email, password, errors } = this.state
-    if (!username || !email || !password) {
+    const { firstName,lastName, role,value,email, password, errors } = this.state
+    if ( !email || !password) {
       if (!username) errors.username = 'Username Is Required'
       if (!email) errors.email = 'Username Is Required'
       if (!password) errors.password = 'Username Is Required'
       return this.setState({ errors })
     }
+    console.log(this.state)
     this.props.onSignup(this.state)
   }
 
-
+ handleChange = (event, index, value) => 
+ 
+ this.setState({value:value
+  ,role:event.nativeEvent.target.innerText 
+  });
 
   render () {
+    const items = [
+  <MenuItem key={1} value={1} primaryText="User" />,
+  <MenuItem key={2} value={2} primaryText="Company" />,
+];
     return (
       <form style={{padding: '16px',margin:'0px'}} className='LoginForm'  onSubmit={this.handleSignup}>
-        <TextField
-          hintText='username'
-          floatingLabelText='Username'
-          onChange={({ target }) => { this.setState({username: target.value}) }}
+        
+          <TextField
+          hintText='First Name'
+          floatingLabelText='First Name'
+          onChange={({ target }) => { this.setState({firstName: target.value}) }}
           style={fieldStyle}
         />
         <TextField
-          hintText='email'
+          hintText='Last Name'
+          floatingLabelText='Last Name'
+          onChange={({ target }) => { this.setState({lastName: target.value}) }}
+          style={fieldStyle}
+        />
+    
+        <TextField
+          hintText='Email'
           floatingLabelText='Email'
           onChange={({ target }) => { this.setState({email: target.value}) }}
           style={fieldStyle}
@@ -60,6 +81,16 @@ export default class SignupForm extends Component {
           style={fieldStyle}
           type='password'
         />
+         <SelectField
+          value={this.state.value}
+          onChange={this.handleChange}
+          floatingLabelText="Floating Label Text"
+          floatingLabelFixed={true}
+          hintText="Hint text"
+        >
+          {items}
+        </SelectField>
+
         <div className='LoginForm-Submit'>
           <RaisedButton
             label='Sign Up'

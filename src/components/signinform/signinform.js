@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import style from './signinform.scss';
-
 const buttonStyle = { width: '100%' }
 const fieldStyle = { width: '80%' }
 
@@ -15,6 +14,7 @@ export default class signinForm extends Component {
   state = {
     errors: { email: null, password: null }
   }
+
 
   render () {
     const { onLogin } = this.props
@@ -52,6 +52,7 @@ export default class signinForm extends Component {
           onChange={({ target }) => { this.setState({password: target.value}) }}
           style={fieldStyle}
         />
+
         <div className='LoginForm-Submit'>
           <RaisedButton
             label='Login'
