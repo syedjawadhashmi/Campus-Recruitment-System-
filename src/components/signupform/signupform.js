@@ -24,13 +24,11 @@ export default class SignupForm extends Component {
       firstName: null,
       email: null,
       lastName: null,
-      value:null,
-      role:null
     })
 
   handleSignup = e => {
     e.preventDefault()
-    const { firstName,lastName, role,value,email, password, errors } = this.state
+    const { firstName,lastName,email, password, errors } = this.state
     if ( !email || !password) {
       if (!username) errors.username = 'Username Is Required'
       if (!email) errors.email = 'Username Is Required'
@@ -41,17 +39,18 @@ export default class SignupForm extends Component {
     this.props.onSignup(this.state)
   }
 
- handleChange = (event, index, value) => 
+/* handleChange = (event, index, value) =>
  
- this.setState({value:value
+ this.setState(
+     {value:value
   ,role:event.nativeEvent.target.innerText 
-  });
+  });*/
 
   render () {
-    const items = [
+/*    const items = [
   <MenuItem key={1} value={1} primaryText="User" />,
   <MenuItem key={2} value={2} primaryText="Company" />,
-];
+];*/
     return (
       <form style={{padding: '16px',margin:'0px'}} className='LoginForm'  onSubmit={this.handleSignup}>
         
@@ -59,14 +58,12 @@ export default class SignupForm extends Component {
           hintText='First Name'
           floatingLabelText='First Name'
           onChange={({ target }) => { this.setState({firstName: target.value}) }}
-          style={fieldStyle}
-        />
+          style={fieldStyle}/>
         <TextField
           hintText='Last Name'
           floatingLabelText='Last Name'
           onChange={({ target }) => { this.setState({lastName: target.value}) }}
-          style={fieldStyle}
-        />
+          style={fieldStyle}/>
     
         <TextField
           hintText='Email'
@@ -81,7 +78,7 @@ export default class SignupForm extends Component {
           style={fieldStyle}
           type='password'
         />
-         <SelectField
+     {/*    <SelectField
           value={this.state.value}
           onChange={this.handleChange}
           floatingLabelText="Floating Label Text"
@@ -89,7 +86,7 @@ export default class SignupForm extends Component {
           hintText="Hint text"
         >
           {items}
-        </SelectField>
+        </SelectField>*/}
 
         <div className='LoginForm-Submit'>
           <RaisedButton

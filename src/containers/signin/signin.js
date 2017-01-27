@@ -16,7 +16,7 @@ class signin extends Component {
 
  static propTypes = {
       auth: PropTypes.object.isRequired,
-    signInWithCustom: PropTypes.func.isRequired
+      signInWithCustom: PropTypes.func.isRequired
   }
 
 
@@ -26,24 +26,16 @@ class signin extends Component {
   //console.log(nextProps)
     const { auth } = this.props;
 
-    const ref = firebase.database().ref().child("users/"+nextProps.auth.auth.user.uid);
-        ref.once('value', snapshot => {
-          const currentUser = snapshot.val()
-           console.log(currentUser)
-             if (auth.isLoggedin && !nextProps.auth.auth.isLoggedin) {
-     browserHistory.push('/signin')
-    }
-    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="User" ) {
-     browserHistory.push('/user/'+nextProps.auth.auth.user.uid);
-    }
-    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="Comapany" ) {
-     browserHistory.push('/company/'+nextProps.auth.auth.user.uid);
-    }
-    else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && currentUser.role=="Admin" ) {
-     browserHistory.push('/admin/'+nextProps.auth.auth.user.uid);
-    }
-        })
-  
+            if (auth.isLoggedin && !nextProps.auth.auth.isLoggedin) {
+                browserHistory.push('/signin')
+            }
+            else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role=="user" ) {
+                browserHistory.push('/user/'+nextProps.auth.auth.user.uid);
+            }
+            else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role=="admin" ) {
+                browserHistory.push('/admin/'+nextProps.auth.auth.user.uid);
+            }
+
   }
 
   handleLogin = (loginData) => {
@@ -59,7 +51,7 @@ class signin extends Component {
         <Paper className='Login-Panel'>
           <LoginForm onLogin={this.handleLogin} />
         </Paper>
-    
+
       </div>
     )
   }

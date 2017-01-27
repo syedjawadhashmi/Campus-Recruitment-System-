@@ -6,27 +6,54 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../reducers';
-
-
+import epics from '../epics';
+import * as parkingEpics from '../epics/parkingArea/parkingArea';
+import * as authEpics from '../epics/auth/auth';
+import { createEpicMiddleware } from 'redux-observable';
+import { combineEpics } from 'redux-observable';
 export default (initialState = {}) => {
-    let middleware = applyMiddleware(thunk);
+   
 
 
-    if (process.env.NODE_ENV !== 'production.') {
-        // configure redux-devtools-extension
-        // @see https://github.com/zalmoxisus/redux-devtools-extension
-        const devToolsExtension = window.devToolsExtension;
-        if (typeof devToolsExtension === 'function') {
-            middleware = compose(middleware, devToolsExtension());
-        }
-    }
-    const store = createStore(reducers, initialState, middleware);
+    // if (process.env.NODE_ENV !== 'production.') {
+    //     // configure redux-devtools-extension
+    //     // @see https://github.com/zalmoxisus/redux-devtools-extension
+    //     const devToolsExtension = window.devToolsExtension;
+    //     if (typeof devToolsExtension === 'function') {
+    //         middleware = compose(middleware, devToolsExtension());
+    //     }
+    // }
 
-    if (module.hot) {
-        module.hot.accept('../reducers', () => {
-            store.replaceReducer(require('../reducers').default);
-        });
-    }
+
+
+    const pingEpic = action$ =>
+        action$.ofType('ping')
+            .delay(1000) // Asynchronously wait 1000ms then continue
+            .mapTo({ type: 'PONG' });
+
+    const pingEpic2 = action$ =>
+        action$.ofType('ping')
+            .delay(1000) // Asynchronously wait 1000ms then continue
+            .mapTo({ type: 'PONG' });
+
+     const rootEpic = combineEpics(
+
+         pingEpic2,
+         parkingEpics.getparkingEpics,
+         authEpics.registerEpic,
+         authEpics.loginEpic,
+         authEpics.logoutEpic
+
+    );
+
+
+
+   const epicMiddleware = createEpicMiddleware(rootEpic);
+    let   middleware = applyMiddleware(epicMiddleware);
+    const store = createStore(reducers,
+        applyMiddleware(epicMiddleware)
+    );
+
 
     return store;
 };

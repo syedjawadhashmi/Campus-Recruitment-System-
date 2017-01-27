@@ -12,8 +12,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import configureStore from './store/store';
 import Root from './config/routes/routes';
 
-
-
 const store = configureStore();
 const syncedHistory = syncHistoryWithStore(browserHistory, store);
 const rootElement = document.getElementById('root');

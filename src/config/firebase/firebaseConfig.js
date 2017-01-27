@@ -5,10 +5,11 @@ import firebase from 'firebase';
 
 
 const firebaseConfig = {
-       apiKey: "AIzaSyBzUGCyxXYfRPaRGFlbXf2qo_8K-f9lP-Y",
-    authDomain: "sj-react-2.firebaseapp.com",
-    databaseURL: "https://sj-react-2.firebaseio.com",
-    storageBucket: "sj-react-2.appspot.com"
+    apiKey: "AIzaSyCJwZZE-qa-sRWC3IeZ4JJUB4defxHt6IQ",
+    authDomain: "panacloud-parking-system.firebaseapp.com",
+    databaseURL: "https://panacloud-parking-system.firebaseio.com",
+    storageBucket: "panacloud-parking-system.appspot.com",
+    messagingSenderId: "879791800293"
 };
 
 

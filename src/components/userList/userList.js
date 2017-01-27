@@ -13,7 +13,7 @@ export default class UsersList extends Component {
     });
   }
 
- 
+
   showUsersList(users) {
     if(!users) {
       return [];
@@ -37,10 +37,11 @@ export default class UsersList extends Component {
     return (
 
 
-        
+
       <ul>
-      
+
         { this.showUsersList(users).map(user => <li>{ user.firstName }</li>) }
+
       </ul>
     );
   }

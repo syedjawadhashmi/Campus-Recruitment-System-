@@ -42,7 +42,6 @@ export default function Root({history, store}) {
          <Route path='' component={userhome} onEnter={requireAuth}>
               <Route path="user/:userid" component={user}/>
               <Route path="admin/:userid" component={admin}/>
-              <Route path="company/:userid" component={company}/>
          </Route>
     </Route>
   </Router>

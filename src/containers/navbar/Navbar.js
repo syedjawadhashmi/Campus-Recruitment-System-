@@ -55,7 +55,7 @@ console.log('sjjjjjjjj' + auth)
       </div>
     )
 
-const rightMenu = auth.auth && auth.auth.user ? (
+const rightMenu = auth.auth.user ? (
        <FlatButton
           label='LogOut'
           style={buttonStyle}

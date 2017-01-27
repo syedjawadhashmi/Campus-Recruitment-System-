@@ -15,7 +15,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 
  class signup extends Component {
 
-  
   static propTypes = {
   
     registerWithCustom: PropTypes.func.isRequired
@@ -36,8 +35,8 @@ import RaisedButton from 'material-ui/RaisedButton'
       lastName: null
     })
 
-  handleSignup = ({ email, password, firstName ,lastName,role}) => {
-    this.props.registerWithCustom({ email, password, firstName ,lastName })
+  handleSignup = ({ email, password, firstName ,lastName}) => {
+    this.props.registerWithCustom({ email, password, firstName ,lastName})
     browserHistory.push('/signin')
   }
 

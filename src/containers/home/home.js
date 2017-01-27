@@ -39,93 +39,81 @@ export default class Home extends Component {
     this.setState({open: false});
   };
     render () {
-const actions = [
-      <FlatButton
-          label="Add"
-        secondary={true}
-        onTouchTap={this.handleClose}
-      />,
-    //   <FlatButton
-    //         label="Cancel"
-    //     secondary={true}
-    //     onTouchTap={this.handleClose}
-    //   />,
-    ];
+
         return (
-            <div>
-<Dialog
-          title="Add Companies Stakeholders"
-          actions={actions}
-          modal={true}
-          open={this.state.open}
-        >
-        <form   onSubmit={this.handleSignup}>
-        
-          <TextField
-          hintText='Company Name'
-          floatingLabelText='Company Name'
-          onChange={({ target }) => { this.setState({companyName: target.value}) }}
-          style={fieldStyle}
-        />
-        <TextField
-          hintText='Employee Name'
-          floatingLabelText='Employee Name'
-          onChange={({ target }) => { this.setState({employeeName: target.value}) }}
-          style={fieldStyle}
-        />
-    
-        <TextField
-          hintText='Salary'
-          floatingLabelText='Salary'
-          onChange={({ target }) => { this.setState({salary: target.value}) }}
-          style={fieldStyle}
-        />
-        <TextField
-          hintText='Descriptions'
-          floatingLabelText='Descriptions'
-          onChange={({ target }) => { this.setState({description: target.value}) }}
-          style={fieldStyle}
-          type='password'
-        />
-     
-    
-      </form>
-        </Dialog>
+            <div style={{display: 'inline-flex',margin:'20px'}}>
+                <Card style={{width:'300px'}}>
+                    <CardHeader title="Hyper Star"/>
+                    <CardMedia
+                        overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                    >
+                        <img src="abc.jpg"  style={{}}/>
+                    </CardMedia>
+                    <CardTitle title="Card title" subtitle=" Card subtitle" />
+                    <CardText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
 
-<Card style={{margin: '16px'}}>
-   
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label="Action1" />
+                        <FlatButton label="Action2" />
+                    </CardActions>
+                </Card>
+                <Card  style={{width:'300px',marginLeft:'5px',marginRight: '30px'}}>
+                    <CardHeader title="Hyper Star"/>
 
-    <CardTitle style={{textAlign:'center'}} title="Companies Posts" subtitle="Sj pvt LtD" />
-    <CardText>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-    </CardText>
-    <CardActions>
-  <Card>
-    <CardHeader
-      title="Without Avatar"
-      subtitle="Subtitle"
-    />
-    <CardActions>
-      <FlatButton label="Action1" />
-      <FlatButton label="Action2" />
-    </CardActions>
-    <CardText>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-    </CardText>
-  </Card>
-     <FloatingActionButton secondary={true} style={styleo} onTouchTap={this.handleOpen}  >
-      <ContentAdd />
-    </FloatingActionButton>
+                    <CardMedia
+                        overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                    >
+                        <img src="abc.jpg"  style={{}}/>
+                    </CardMedia>
+                    <CardTitle title="Card title" subtitle="Card subtitle" />
+                    <CardText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label="Action1" />
+                        <FlatButton label="Action2" />
+                    </CardActions>
+                </Card>
+                <Card style={{width:'300px'}}>
+                    <CardHeader title="Hyper Star"/>
+                    <CardMedia
+                        overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                    >
+                        <img src="abc.jpg"  style={{}}/>
+                    </CardMedia>
+                    <CardTitle title="Card title" subtitle="Card subtitle" />
+                    <CardText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
 
-  
-    </CardActions>
-  </Card>
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label="Action1" />
+                        <FlatButton label="Action2" />
+                    </CardActions>
+                </Card>
+                <Card  style={{width:'300px',marginLeft:'5px',marginRight: '30px'}}>
+                    <CardHeader title="Hyper Star"/>
+
+                    <CardMedia
+                        overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                    >
+                        <img src="abc.jpg"  style={{}}/>
+                    </CardMedia>
+                    <CardTitle title="Card title" subtitle="Card subtitle" />
+                    <CardText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label="Action1" />
+                        <FlatButton label="Action2" />
+                    </CardActions>
+                </Card>
             </div>
         )
     }
