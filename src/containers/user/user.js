@@ -4,6 +4,7 @@
 import React, { Component,PropTypes } from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router'
 import { connect } from 'react-redux';
 import UsersList from '../../components/userList/userList';
 import LoginForm from '../../components/signinform/signinform'
@@ -21,7 +22,7 @@ static propTypes = {
         if(!users) {
             return [];
         }
-
+          console.log(users)
         return Object.keys(users).reduce(
             (list, uid) => {
                 return [
@@ -32,6 +33,7 @@ static propTypes = {
                     }
                 ];
             }, []);
+
     }
     render () {
 
@@ -42,41 +44,46 @@ static propTypes = {
    const { dispatch, parkings ,auth } = this.props;
 
         return (
-
-            <div style={{display: 'inline-flex',margin:'20px'}}>
+<div>
+            {
+        !this.props.children ? <div style={{display: 'inline-flex', margin: '20px'}}>
 
 
                 {
 
                     this.props.parkings.isloaded ? this.showUsersList(this.props.parkings.parkingData).map(user =>
 
-                            <Card  style={{width:'300px',marginLeft:'5px',marginRight: '30px'}}>
-                                <CardHeader title="Hyper Star"/>
+                            <Card style={{width: '300px', marginLeft: '5px', marginRight: '30px'}}>
+
 
                                 <CardMedia
-                                    overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                                    overlay={<CardTitle title={user.name} subtitle="Overlay subtitle"/>}
                                 >
-                                    <img src="abc.jpg"  style={{}}/>
+                                    <img src={user.url} style={{}}/>
                                 </CardMedia>
-                                <CardTitle title="Card title" subtitle="Card subtitle" />
+                                <CardTitle style={{textDecoration:'none'}} title={
+                                    <Link  style={{textDecoration:'none'}} to={`/${this.props.params.userid}/parkings/${user.uid}` }>
+                                        {user.name}
+                                    </Link>
+                                } subtitle="Card subtitle"/>
                                 <CardText>
+
                                     {user.name}
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
                                 </CardText>
-                                <CardActions>
-                                    <FlatButton label="Action1" />
-                                    <FlatButton label="Action2" />
-                                </CardActions>
                             </Card>
-
-
-                        ): ''
+                        ) : ''
 
 
 
-               }
-            </div>
+                }
+            </div> :<div>{this.props.children}</div>
+
+         }
+
+
+</div>
         )
     }
 }
@@ -90,7 +97,6 @@ const mapStateToProps = (state) => {
 
         auth: state.auth ,
         parkings: state.parkingData
-
         };
 };
 

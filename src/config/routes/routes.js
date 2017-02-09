@@ -12,7 +12,7 @@ import signup from '../../containers/signup/signup'
 import signin from '../../containers/signin/signin'
 import userhome from '../../containers/userhome/userhome'
 import user from '../../containers/user/user'
-import company from '../../containers/company/company'
+import parkings from '../../containers/parkings/parkings'
 import admin from '../../containers/admin/admin'
 
 const requireAuth = (nextState, replace) => {
@@ -40,7 +40,9 @@ export default function Root({history, store}) {
         <Route path='signup' component={signup} />
          <Route path='signin' component={signin} />
          <Route path='' component={userhome} onEnter={requireAuth}>
-              <Route path="user/:userid" component={user}/>
+              <Route path="/:userid" component={user}>
+                  <Route path="parkings/:parkingid" component={parkings}/>
+              </Route>
               <Route path="admin/:userid" component={admin}/>
          </Route>
     </Route>

@@ -21,7 +21,25 @@ static propTypes = {
         return (
 
             <div>
-                <h4>This is Admin Page { this.props.auth.auth.user.email } </h4>
+                <Tabs>
+                    <Tab label="Users" >
+
+                    </Tab>
+                    <Tab label="View Locations" >
+
+                    </Tab>
+                    <Tab
+                        label="View slots"
+                    >
+                        
+                    </Tab>
+                    <Tab
+                        label="Feedback"
+                    ><div>
+
+                        </div>
+                    </Tab>
+                </Tabs>
             </div>
         )
     }

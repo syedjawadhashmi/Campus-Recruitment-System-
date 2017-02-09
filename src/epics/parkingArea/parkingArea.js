@@ -12,7 +12,8 @@ import { browserHistory } from 'react-router'; // http://stackoverflow.com/quest
 import {
     GET_PARKING_PROCESS,
     GET_PARKING_PROCESS_SUCCESS,
-    GET_PARKING_PROCESS_ERROR
+    GET_PARKING_PROCESS_ERROR,
+
 } from '../../action/parking';
 
 import firebase from 'firebase';
@@ -32,9 +33,6 @@ export const getparkingEpics = action$ =>
                         payload: u.val()
 
                     }
-
-
-
 
             });
 

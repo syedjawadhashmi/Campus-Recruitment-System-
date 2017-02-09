@@ -37,9 +37,6 @@ handleLogin = (loginData) => {
 
   render () {
 const { auth } = this.props;
-
-
-console.log('sjjjjjjjj' + auth)
       const mainMenu = (
       <div className='Navbar-Main-Menu' >
         <FlatButton
@@ -78,7 +75,7 @@ const rightMenu = auth.auth.user ? (
       return(
           <div>
 
-          <AppBar title="Campus Recuritment System" className='Navbar' iconElementRight={rightMenu} />
+          <AppBar title="Panacloud Parking System" className='Navbar' showMenuIconButton={false} iconElementRight={rightMenu} />
         
           </div>
       )

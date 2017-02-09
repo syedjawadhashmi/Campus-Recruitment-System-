@@ -5,12 +5,13 @@ import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { authReducer} from './auth/auth';
 import { parkingReducer } from './parkingAreas/parkingAreas';
-import { companyReducer } from './company/company';
+import { boookingReducer } from './booking/booking';
 
 export default combineReducers({
     routing: routerReducer,
     auth: authReducer,
-    parkingData:parkingReducer
+    parkingData:parkingReducer,
+    bookingData:boookingReducer
 
 });
 

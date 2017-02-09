@@ -22,6 +22,7 @@ export const parkingReducer = function (state = InitalState, action) {
             return Object.assign({}, state, { isloaded: true, parkingData: action.payload });
 
 
+
         default:
             return state;
     }

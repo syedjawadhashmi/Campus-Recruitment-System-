@@ -7,6 +7,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import epics from '../epics';
+import * as bookingEpics from '../epics/booking/booking';
 import * as parkingEpics from '../epics/parkingArea/parkingArea';
 import * as authEpics from '../epics/auth/auth';
 import { createEpicMiddleware } from 'redux-observable';
@@ -40,6 +41,9 @@ export default (initialState = {}) => {
 
          pingEpic2,
          parkingEpics.getparkingEpics,
+         bookingEpics.getbookingEpics,
+         bookingEpics.updatebookingEpics,
+         bookingEpics.cancelbookingEpics,
          authEpics.registerEpic,
          authEpics.loginEpic,
          authEpics.logoutEpic

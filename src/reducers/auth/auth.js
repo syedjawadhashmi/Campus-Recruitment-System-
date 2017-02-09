@@ -70,7 +70,7 @@ export const authReducer = function (state = InitalState, action) {
       return Object.assign({}, state, { isLoading: false  });
    
      case SIGN_OUT:
-      return Object.assign({}, state, { isProcessing: true });
+      return Object.assign({}, state, { isProcessing: true ,user: null});
    case SIGN_OUT_ERROR:
       return Object.assign({}, state, { isProcessing: false, isLoading: false, isLoggedin: false, user: null });
     case SIGN_OUT_SUCCESS:

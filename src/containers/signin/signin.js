@@ -30,7 +30,7 @@ class signin extends Component {
                 browserHistory.push('/signin')
             }
             else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role=="user" ) {
-                browserHistory.push('/user/'+nextProps.auth.auth.user.uid);
+                browserHistory.push('/'+nextProps.auth.auth.user.uid);
             }
             else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role=="admin" ) {
                 browserHistory.push('/admin/'+nextProps.auth.auth.user.uid);
